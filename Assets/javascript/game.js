@@ -1,8 +1,8 @@
 
-let officeCharacters =['michaelscott', 'pamandjim', 'dwight', 'toby','creed'];
+let officeCharacters = ['michaelscott', 'pamandjim', 'dwight', 'toby', 'creed'];
 
 let randNum = Math.floor(Math.random() * officeCharacters.length);
-let rightWord =[];
+let rightWord = [];
 let wrongWord = [];
 let underScore = [];
 
@@ -13,41 +13,53 @@ var docWrongGuess = document.getElementsByClassName('wrongArray');
 let chosenWord = officeCharacters[randNum];
 underScore = []
 
-let generateUnderscore = ()=> {
-    for (var i =0; i < chosenWord.length; i++) {
+let generateUnderscore = () => {
+    for (var i = 0; i < chosenWord.length; i++) {
         underScore.push('_');
     }
     return underScore;
 }
 
-document.addEventListener('keypress',(event) => {
+document.addEventListener('keypress', (event) => {
     let keycode = event.key;
-    
-    if(chosenWord.indexOf(keycode) > -1) {
+
+    if (chosenWord.indexOf(keycode) > -1) {
         rightWord.push(keycode);
- 
-        var pos=0;
-        var i=-1;
-        var num=-1;
-        while(pos!=-1){
-            pos=chosenWord.indexOf(keycode,i+1);
-            underScore[pos]=keycode;
-            num+=1;
-            i=pos;
+
+        var pos = 0;
+        var i = -1;
+        var num = -1;
+        while (pos != -1) {
+            pos = chosenWord.indexOf(keycode, i + 1);
+            underScore[pos] = keycode;
+            num += 1;
+            i = pos;
         }
-        underScore[chosenWord.indexOf(keycode)]=keycode;
+        underScore[chosenWord.indexOf(keycode)] = keycode;
         docUnderScore[0].innerHTML = underScore.join(' ');
         docRightGuess[0].innerHTML = rightWord;
 
-        if(underScore.join('')== chosenWord){
+        if (underScore.join('') == chosenWord) {
             alert('You Win');
         }
     }
-        else {
-            wrongWord.push(keycode);
-            docWrongGuess [0].innerHTML =wrongWord;
-        }
-        
-    });
+    else {
+        wrongWord.push(keycode);
+        docWrongGuess[0].innerHTML = wrongWord;
+    }
+
+});
+
+document.getElementById('reset-button').addEventListener('click', (event) => {
+    randNum = Math.floor(Math.random() * officeCharacters.length);
+    chosenWord = officeCharacters[randNum];
+    underScore = [];
+    rightWord = [];
+    wrongWord = [];
+    underScore = [];
+    docRightGuess[0].innerHTML='';
+    docWrongGuess[0].innerHTML='';
+    docUnderScore[0].innerHTML=generateUnderscore().join(' ');
+});
 
 docUnderScore[0].innerHTML = generateUnderscore().join(' ');
