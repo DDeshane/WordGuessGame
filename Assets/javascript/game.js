@@ -6,8 +6,9 @@ let wrongWord = [];
 let underScore = [];
 
 var docUnderScore = document.getElementsByClassName('underscores');
-var docRightGuess = document.getElementsByClassName('rightGuess');
+var docRightGuess = document.getElementsByClassName('rightArray');
 var docWrongGuess = document.getElementsByClassName('wrongArray');
+var gameScore = 0;
 
 let chosenWord = officeCharacters[randNum];
 underScore = []
@@ -39,6 +40,9 @@ document.addEventListener('keypress', (event) => {
         docRightGuess[0].innerHTML = rightWord;
 
         if (underScore.join('') == chosenWord) {
+            var image=document.getElementById('winning-image');
+            image.setAttribute('src','assets/images/'+chosenWord+'.jpg');
+            image.style="display: block;";
             setTimeout(youWin,500);
         }
     }
@@ -50,7 +54,9 @@ document.addEventListener('keypress', (event) => {
 });
 
 function youWin(){
-    alert('You Win');
+    gameScore+=1;
+    alert('You Win\r\nScore: '+gameScore);
+
 }
 
 document.getElementById('reset-button').addEventListener('click', (event) => {
@@ -63,6 +69,9 @@ document.getElementById('reset-button').addEventListener('click', (event) => {
     docRightGuess[0].innerHTML='';
     docWrongGuess[0].innerHTML='';
     docUnderScore[0].innerHTML=generateUnderscore().join(' ');
+    var image=document.getElementById('winning-image');
+    image.setAttribute('src','');
+    image.style="display: none;";
 });
 
 docUnderScore[0].innerHTML = generateUnderscore().join(' ');

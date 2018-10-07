@@ -11,6 +11,7 @@ header {
 
 .underscores {
     border:3px solid black;
+    font-family:"latin_modern_mono10_regular";
     font-size: 50px;
     text-align: center;
     margin:50px auto;
@@ -48,4 +49,9 @@ header {
     text-decoration:none;
     display: block;
     
+}
+
+#winning-image {
+    display: none;
+    margin: 0 auto;
 }
