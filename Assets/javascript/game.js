@@ -1,4 +1,3 @@
-
 let officeCharacters = ['michaelscott', 'pamandjim', 'dwight', 'toby', 'creed'];
 
 let randNum = Math.floor(Math.random() * officeCharacters.length);
@@ -35,12 +34,12 @@ document.addEventListener('keypress', (event) => {
             num += 1;
             i = pos;
         }
-        underScore[chosenWord.indexOf(keycode)] = keycode;
+        
         docUnderScore[0].innerHTML = underScore.join(' ');
         docRightGuess[0].innerHTML = rightWord;
 
         if (underScore.join('') == chosenWord) {
-            alert('You Win');
+            setTimeout(youWin,500);
         }
     }
     else {
@@ -49,6 +48,10 @@ document.addEventListener('keypress', (event) => {
     }
 
 });
+
+function youWin(){
+    alert('You Win');
+}
 
 document.getElementById('reset-button').addEventListener('click', (event) => {
     randNum = Math.floor(Math.random() * officeCharacters.length);
